@@ -12,24 +12,7 @@ while(cap.isOpened()):
         gray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 
         # COLOR THRESHOLDING
-        # lower_white=np.array([0,0,200],dtype=np.uint8)
-        # upper_white=np.array([255,30,255],dtype=np.uint8)
-        # whites_mask=cv2.inRange(hsv,lower_white,upper_white)
-        #
-        # lower_yellow=np.array([15,127,127],dtype=np.uint8)
-        # upper_yellow=np.array([100,255,255],dtype=np.uint8)
-        # yellows_mask=cv2.inRange(hsv,lower_yellow,upper_yellow)
-        # agg_mask=cv2.bitwise_or(whites_mask,yellows_mask)
-        # cv2.imshow('agg',agg_mask)
-        # cv2.imshow('yellows',yellows_mask)
-        # cv2.imshow('whites',whites_mask)
-        # canny=cv2.Canny(gray,50,150)
-        # cv2.imshow('canny',canny)
-        # edges=cv2.bitwise_and(canny,agg_mask)
-        # cv2.imshow('filter',edges)
-        # cv2.waitKey()
-
-
+        
         red_thresh=220
         green_thresh=180
         blue_thresh=70
