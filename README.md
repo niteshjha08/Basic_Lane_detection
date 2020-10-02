@@ -6,7 +6,8 @@
 The goal of this project is to find lane lines in images and videos using basic image processing techniques such as Canny edge detection and Hough transforms, and help navigate a self-driving vehicle on both straight or curved roads. The detailed report of the pipeline used is available in the file *writeup.md*.
 
 ### Structure of repository
-1. [*src*](https://github.com/niteshjha08/Basic_Lane_detection/tree/master/src) : contains files for tuning different parameters of the pipeline, multiple approaches for implementation, and test codes
+
+1. *src* : contains files for tuning different parameters of the pipeline, multiple approaches for implementation, and test codes
 2. *test_images* : contains set of images used for testing.
 3. *test_videos* : contains videos used for testing
 4. *test_videos_output* :  contains results of implementation of pipeline over test videos.
