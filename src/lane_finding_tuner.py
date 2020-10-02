@@ -14,15 +14,9 @@ cv2.createTrackbar('Red_threshold','Tuner',0,255,nothing)
 cv2.createTrackbar('Green_threshold', 'Tuner',0, 255, nothing)
 cv2.createTrackbar('Blue_threshold', 'Tuner', 0 ,255, nothing)
 while(cv2.waitKey(10)!=ord('q')):
-    image=cv2.imread('test_images/solidYellowLeft.jpg')
+    image=cv2.imread('./../test_images/solidYellowLeft.jpg')
     img=image.copy()
     gray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-
-    # COLOR THRESHOLDING
-    # red_thresh= 202
-    # green_thresh= 195
-    # blue_thresh= 200
-
 
     red_thresh=cv2.getTrackbarPos('Red_threshold','Tuner')
     green_thresh = cv2.getTrackbarPos('Green_threshold', 'Tuner')

@@ -1,29 +1,50 @@
 # **Finding Lane Lines on the Road** 
 
-## Writeup Template
-
-### You can use this file as a template for your writeup if you want to submit it as a markdown file. But feel free to use some other method and submit a pdf if you prefer.
-
 ---
 
-**Finding Lane Lines on the Road**
 
 The goals / steps of this project are the following:
 * Make a pipeline that finds lane lines on the road
-* Reflect on your work in a written report
+* Reflect on the work and determine limitations, along with potential improvements
 
-
-[//]: # (Image References)
-
-[image1]: ./examples/grayscale.jpg "Grayscale"
 
 ---
 
 ### Reflection
 
-### 1. Describe your pipeline. As part of the description, explain how you modified the draw_lines() function.
+### 1. Describe the pipeline. As part of the description, explain how you modified the draw_lines() function.
 
-My pipeline consisted of 5 steps. First, I converted the images to grayscale, then I .... 
+My pipeline consisted of 5 steps. 
+![Original_Image](https://github.com/niteshjha08/Basic_Lane_detection/blob/master/writeup_images/original.PNG)
+
+*Original Image*
+1. **Color Thresholding** : Based on optimum values obtained from [lane_finding_tuner](https://github.com/niteshjha08/Basic_Lane_detection/blob/master/src/lane_finding_tuner.py), the R,G,B values are determined which only keep the key regions of image (along with a little noise), i.e. lane lines, making other regions  black.
+![Color_thresholding](https://github.com/niteshjha08/Basic_Lane_detection/blob/master/writeup_images/color_threshold.PNG)
+
+*Output of color thresholding*
+
+2. **Grayscaling** : The output of previous step is then grayscaled. 
+![Grayscale](https://github.com/niteshjha08/Basic_Lane_detection/blob/master/writeup_images/grayscale3.PNG)
+
+*Output of grayscaling*
+
+3. **Canny edge detection** : Then, the edges of this grayscale image is detected.
+![Canny](https://github.com/niteshjha08/Basic_Lane_detection/blob/master/writeup_images/canny4.PNG)
+
+*Output of canny edge detection*
+
+4. **Region masking** : Keeping in mind the occurrence of lane lines in general, vertices of region of interest are determined, and a mask is created, which is white inside these ROI, and black elsewhere. Then, a bitwise_and operation takes place between this mask and canny edges from the previous step. This results in an image with edges only in the ROI, eliminating all edges in other regions. 
+![Region_masking](https://github.com/niteshjha08/Basic_Lane_detection/blob/master/writeup_images/roi5.PNG)
+
+*Output of region-masking of canny edges*
+
+5. **Hough lines** : Finally, the lines are detected in only the edges in the ROI, i.e. output of previous step, with hough parameters obtained.
+---
+**draw_lines() function**
+ To differentiate between lines belonging to the left and right lane, slopes and location of the lines can be used. Here, both have been used together. Lines having a negative slope will belong to the left lane, and those having positive slope, to the right lane. (**Note**: This is opposite of the conventional slope which has signs the other way round. This is because the origin is at the top-left, not bottom-left.)
+In addition to slope, lines are also checked for the starting x-coordinate. If it is on the first half of the image, it will be of the left line, and those in the second half will be right lanes. Only when both these conditions are satisfied(slope and location), points are appended to a list of respective lanes, and final aggregated slope and intercept is calculated for both lines, and plotted on original image after blending for transparency.
+
+![Hough lines](https://github.com/niteshjha08/Basic_Lane_detection/blob/master/writeup_images/hough6.PNG)
 
 In order to draw a single line on the left and right lanes, I modified the draw_lines() function by ...
 
