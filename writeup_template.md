@@ -14,7 +14,8 @@ The goals / steps of this project are the following:
 
 ### 1. Describe the pipeline. As part of the description, explain how you modified the draw_lines() function.
 
-My pipeline consisted of 5 steps. 
+My pipeline consisted of 5 steps.
+ 
 ![Original_Image](https://github.com/niteshjha08/Basic_Lane_detection/blob/master/writeup_images/original.PNG)
 
 *Original Image*
@@ -41,8 +42,15 @@ My pipeline consisted of 5 steps.
 5. **Hough lines** : Finally, the lines are detected in only the edges in the ROI, i.e. output of previous step, with hough parameters obtained.
 ---
 **draw_lines() function**
- To differentiate between lines belonging to the left and right lane, slopes and location of the lines can be used. Here, both have been used together. Lines having a negative slope will belong to the left lane, and those having positive slope, to the right lane. (**Note**: This is opposite of the conventional slope which has signs the other way round. This is because the origin is at the top-left, not bottom-left.)
-In addition to slope, lines are also checked for the starting x-coordinate. If it is on the first half of the image, it will be of the left line, and those in the second half will be right lanes. Only when both these conditions are satisfied(slope and location), points are appended to a list of respective lanes, and final aggregated slope and intercept is calculated for both lines, and plotted on original image after blending for transparency.
+
+ To differentiate between lines belonging to the left and right lane, slopes and location of the lines can be used. Lines having a negative slope will belong to the left lane, and those having positive slope, to the right lane. (**Note**: This is opposite of the conventional slope which has signs the other way round. This is because the origin is at the top-left, not bottom-left.)
+ 
+ However, there can be some misclassifications due to a similarly colored object on the road (or just random noise) if sign of slope was solely relied on. This is shown below.
+ Lines detected as **left** are colored in **blue**.
+ Lines detected as **right** are colored in **green**.
+ ![error1](https://github.com/niteshjha08/Basic_Lane_detection/blob/master/writeup_images/only_slope_error_cause1.PNG)    ![result1](https://github.com/niteshjha08/Basic_Lane_detection/blob/master/writeup_images/only_slope_error_result1.PNG)
+ 
+In addition to slope, lines are also checked for their  x-coordinates. Lines on the first half of the image will correspond to the left lane, and those in the second half will correspond to the right lanes. Only when both these conditions are satisfied (slope and location), points are appended to a list of respective lanes, and final aggregated slope and intercept is calculated for both lanes, and plotted on original image after blending for transparency.
 
 ![Hough lines](https://github.com/niteshjha08/Basic_Lane_detection/blob/master/writeup_images/hough6.PNG)
 

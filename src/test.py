@@ -70,6 +70,7 @@ def draw_lines(img, lines, color=[255, 0, 0], thickness=2):
     If you want to make the lines semi-transparent, think about combining
     this function with the weighted_img() function below
     """
+    copy1=image.copy()
     lx = []
     ly = []
     rx = []
@@ -79,14 +80,14 @@ def draw_lines(img, lines, color=[255, 0, 0], thickness=2):
 
         for (x1, y1, x2, y2) in line:
             slope = ((y2 - y1) / (x2 - x1))
-            if (slope<0 and x1<shape[1]/2):  # Left lane line
+            if (slope<0):  # Left lane line
                 lx.extend([x1, x2])
                 ly.extend([y1, y2])
-                #cv2.line(image,(x1,y1),(x2,y2),(255,0,0),2)
-            if (slope>0 and x1>shape[1]/2):  # Right lane line
+                cv2.line(image,(x1,y1),(x2,y2),(255,0,0),2)
+            if (slope>0):  # Right lane line
                 rx.extend([x1, x2])
                 ry.extend([y1, y2])
-                #cv2.line(image, (x1, y1), (x2, y2), (0,255,0), 2)
+                cv2.line(image, (x1, y1), (x2, y2), (0,255,0), 2)
     left_A, left_B = np.polyfit(lx, ly, 1)
     left_start = (int((shape[0] - left_B) / left_A), shape[0])
     left_end = (int((325 - left_B) / left_A), 325)
@@ -95,10 +96,12 @@ def draw_lines(img, lines, color=[255, 0, 0], thickness=2):
     right_start = (int((shape[0] - right_B) / right_A), shape[0])
     right_end = (int((325 - right_B) / right_A), 325)
 
-    cv2.line(image, left_start, left_end, (0, 0, 255), 10)
-    cv2.line(image, right_start, right_end, (0, 0, 255), 10)
-    final=cv2.addWeighted(image,0.6,copy,0.4,0)
-    cv2.imshow('slopemethod',final)
+    cv2.line(copy1, left_start, left_end, (0, 0, 255), 10)
+    cv2.line(copy1, right_start, right_end, (0, 0, 255), 10)
+    cv2.imshow('individual_lane_lined',image)
+    cv2.imshow('overall_result', copy1)
+    #final=cv2.addWeighted(image,0.6,copy,0.4,0)
+    #cv2.imshow('slopemethod',final)
 
 
 def hough_lines(img, rho, theta, threshold, min_line_len, max_line_gap):
@@ -130,7 +133,7 @@ def weighted_img(img, initial_img, α=0.8, β=1., γ=0.):
     """
     return cv2.addWeighted(initial_img, α, img, β, γ)
 
-cap=cv2.VideoCapture('test_videos/solidWhiteRight.mp4')
+cap=cv2.VideoCapture('./../test_videos/solidYellowLeft.mp4')
 
 while(cap.isOpened()):
     ret,image=cap.read()
@@ -155,4 +158,4 @@ while(cap.isOpened()):
     roi=region_of_interest(cannyimg,vertices)
     cv2.imshow('roi',roi)
     lines=hough_lines(roi,2,math.pi/180,5,20,40)
-    cv2.waitKey(33)
+    cv2.waitKey()
