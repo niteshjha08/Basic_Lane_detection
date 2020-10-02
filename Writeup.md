@@ -58,28 +58,27 @@ My pipeline consisted of 5 steps.
  
 To account for this, lines are also checked for their  x-coordinates. Lines on the first half of the image will correspond to the left lane, and those in the second half will correspond to the right lanes.
 
-![line_segments](https://github.com/niteshjha08/Basic_Lane_detection/blob/master/writeup_images/line_segments.PNG) 
+![line_segments](https://github.com/niteshjha08/Basic_Lane_detection/blob/master/writeup_images/line_segments.PNG)
+
+
 Only when both these conditions are satisfied (slope and location), points are appended to a list of respective lanes, and final aggregated slope and intercept is calculated for both lanes, and plotted on original image after blending for transparency.
 
+![Hough lines](https://github.com/niteshjha08/Basic_Lane_detection/blob/master/writeup_images/hough6.PNG)
 
 
-In order to draw a single line on the left and right lanes, I modified the draw_lines() function by ...
 
-If you'd like to include images to show how the pipeline works, here is how to include an image: 
+### 2. Potential shortcomings 
 
-![alt text][image1]
+One potential shortcoming to this pipeline could be when a left lane is actually in the right part of the image, in which case it will fail to detect. This can happen in tight corners.
 
+Another shortcoming could be when there are various marking on the road of colors similar to the lanes, such as pedestrian crossings (or crosswalk). Due to large amount of lines throughout the breadth of image, it might give bad estimates.
 
-### 2. Identify potential shortcomings with your current pipeline
+Moreover, even mildly congested areas, with cars close by, can distort the results significantly.
+### 3. Possible improvements to the pipeline
 
+A possible improvement would be to determine optimum values of slope which can successfully differentiate left and right lane lines out of the many lines detected by Hough transform. This will help in getting rid of the first shortcoming mentioned above, i.e. location would not be an issue then.
 
-One potential shortcoming would be what would happen when ... 
+Sophisticated methods of lane extraction, such as CNNs would help in making it robust to nearby traffic and lane markings.
 
-Another shortcoming could be ...
+Moreover, a limiting element can be put which restricts change of final lane line's slope by a significant margin quickly, as lanes generally change slope gradually. This will ensure erratic fluctutations. 
 
-
-### 3. Suggest possible improvements to your pipeline
-
-A possible improvement would be to ...
-
-Another potential improvement could be to ...
