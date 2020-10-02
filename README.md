@@ -15,4 +15,4 @@ update
 5. [*writeup_images*](https://github.com/niteshjha08/Basic_Lane_detection/tree/master/writeup_images) : contains images used for this document and detailed report.
 6. [*P1.ipynb*](https://github.com/niteshjha08/Basic_Lane_detection/blob/master/P1.ipynb) : IPython code for the project
 7. [*P1_pipeline_outputs.ipynb*](https://github.com/niteshjha08/Basic_Lane_detection/blob/master/P1_pipeline_outputs.ipynb) : Same IPython notebook but with distributed pipeline for visualizing various steps
-8. *writeup.md* : Detailed report of the code and methodolgy
+8. [*Writeup.md*](https://github.com/niteshjha08/Basic_Lane_detection/blob/master/Writeup.md) : Detailed report of the code and methodolgy
