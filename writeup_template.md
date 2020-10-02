@@ -48,7 +48,9 @@ My pipeline consisted of 5 steps.
  However, there can be some misclassifications due to a similarly colored object on the road (or just random noise) if sign of slope was solely relied on. This is shown below.
  Lines detected as **left** are colored in **blue**.
  Lines detected as **right** are colored in **green**.
+
  ![error1](https://github.com/niteshjha08/Basic_Lane_detection/blob/master/writeup_images/only_slope_error_cause1.PNG)    ![result1](https://github.com/niteshjha08/Basic_Lane_detection/blob/master/writeup_images/only_slope_error_result1.PNG)
+
  
 In addition to slope, lines are also checked for their  x-coordinates. Lines on the first half of the image will correspond to the left lane, and those in the second half will correspond to the right lanes. Only when both these conditions are satisfied (slope and location), points are appended to a list of respective lanes, and final aggregated slope and intercept is calculated for both lanes, and plotted on original image after blending for transparency.
 
