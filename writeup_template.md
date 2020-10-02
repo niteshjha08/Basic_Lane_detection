@@ -49,25 +49,10 @@ My pipeline consisted of 5 steps.
  Lines detected as **left** are colored in **blue**.
  Lines detected as **right** are colored in **green**.
 
-<<<<<<< HEAD
-*Positive-slope line detected on left lane*
-<img src="https://github.com/niteshjha08/Basic_Lane_detection/blob/master/writeup_images/1.PNG" width="500" height="185"/>
+<img src="https://github.com/niteshjha08/Basic_Lane_detection/blob/master/writeup_images/1.PNG" width="500" height="185"/>*Positive-slope line detected on left lane*
 
+<img src="https://github.com/niteshjha08/Basic_Lane_detection/blob/master/writeup_images/only_slope_error_result1.PNG" width="500" height="260"/>*Incorrect result due to this*
 
-*Incorrect result due to this*
-<img src="https://github.com/niteshjha08/Basic_Lane_detection/blob/master/writeup_images/only_slope_error_result1.PNG" width="500" height="260"/>
-
-=======
- <figure>
-<img src="https://github.com/niteshjha08/Basic_Lane_detection/blob/master/writeup_images/1.PNG" width="500" height="185"/>
-<figcaption>line with positive slope on left lane</figcaption>
-</figure>
-
-<figure>
-<img src="https://github.com/niteshjha08/Basic_Lane_detection/blob/master/writeup_images/only_slope_error_result1.PNG" width="500" height="260"/>
-<figcaption>Incorrect result due to this</figcaption>
-</figure>
->>>>>>> eb456279d3561a27255f4b185427d17e0dd9b43a
  
 In addition to slope, lines are also checked for their  x-coordinates. Lines on the first half of the image will correspond to the left lane, and those in the second half will correspond to the right lanes. Only when both these conditions are satisfied (slope and location), points are appended to a list of respective lanes, and final aggregated slope and intercept is calculated for both lanes, and plotted on original image after blending for transparency.
 
