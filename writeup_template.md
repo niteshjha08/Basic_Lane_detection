@@ -40,23 +40,28 @@ My pipeline consisted of 5 steps.
 *Output of region-masking of canny edges*
 
 5. **Hough lines** : Finally, the lines are detected in only the edges in the ROI, i.e. output of previous step, with hough parameters obtained.
+
+![Hough lines](https://github.com/niteshjha08/Basic_Lane_detection/blob/master/writeup_images/hough6.PNG)
 ---
 **draw_lines() function**
 
  To differentiate between lines belonging to the left and right lane, slopes and location of the lines can be used. Lines having a negative slope will belong to the left lane, and those having positive slope, to the right lane. (**Note**: This is opposite of the conventional slope which has signs the other way round. This is because the origin is at the top-left, not bottom-left.)
  
- However, there can be some misclassifications due to a similarly colored object on the road (or just random noise) if sign of slope was solely relied on. This is shown below.
+ However, there can be some misclassifications due to a similarly colored object on the road (or just random noise) if sign of slope was solely relied on. This can lead to terrible estimationes, as shown below.
  Lines detected as **left** are colored in **blue**.
  Lines detected as **right** are colored in **green**.
 
-<img src="https://github.com/niteshjha08/Basic_Lane_detection/blob/master/writeup_images/1.PNG" width="500" height="185"/>*Positive-slope line detected on left lane*
+<img src="https://github.com/niteshjha08/Basic_Lane_detection/blob/master/writeup_images/only_slope_cause1.PNG" width="500" height="185"/>*Positive-slope line detected on left lane*
 
 <img src="https://github.com/niteshjha08/Basic_Lane_detection/blob/master/writeup_images/only_slope_error_result1.PNG" width="500" height="260"/>*Incorrect result due to this*
 
  
-In addition to slope, lines are also checked for their  x-coordinates. Lines on the first half of the image will correspond to the left lane, and those in the second half will correspond to the right lanes. Only when both these conditions are satisfied (slope and location), points are appended to a list of respective lanes, and final aggregated slope and intercept is calculated for both lanes, and plotted on original image after blending for transparency.
+To account for this, lines are also checked for their  x-coordinates. Lines on the first half of the image will correspond to the left lane, and those in the second half will correspond to the right lanes.
 
-![Hough lines](https://github.com/niteshjha08/Basic_Lane_detection/blob/master/writeup_images/hough6.PNG)
+![line_segments](https://github.com/niteshjha08/Basic_Lane_detection/blob/master/writeup_images/line_segments.PNG) 
+Only when both these conditions are satisfied (slope and location), points are appended to a list of respective lanes, and final aggregated slope and intercept is calculated for both lanes, and plotted on original image after blending for transparency.
+
+
 
 In order to draw a single line on the left and right lanes, I modified the draw_lines() function by ...
 

@@ -80,11 +80,11 @@ def draw_lines(img, lines, color=[255, 0, 0], thickness=2):
 
         for (x1, y1, x2, y2) in line:
             slope = ((y2 - y1) / (x2 - x1))
-            if (slope<0):  # Left lane line
+            if (slope<0 and x1<shape[1]/2):  # Left lane line
                 lx.extend([x1, x2])
                 ly.extend([y1, y2])
                 cv2.line(image,(x1,y1),(x2,y2),(255,0,0),2)
-            if (slope>0):  # Right lane line
+            if (slope>0 and x1>shape[1]/2):  # Right lane line
                 rx.extend([x1, x2])
                 ry.extend([y1, y2])
                 cv2.line(image, (x1, y1), (x2, y2), (0,255,0), 2)
@@ -133,7 +133,7 @@ def weighted_img(img, initial_img, α=0.8, β=1., γ=0.):
     """
     return cv2.addWeighted(initial_img, α, img, β, γ)
 
-cap=cv2.VideoCapture('./../test_videos/solidYellowLeft.mp4')
+cap=cv2.VideoCapture('./../test_videos/solidWhiteRight.mp4')
 
 while(cap.isOpened()):
     ret,image=cap.read()
